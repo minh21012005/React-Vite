@@ -6,20 +6,7 @@ import { useState } from 'react'
 
 const App = () => {
 
-  const [todoList, setTodoList] = useState([
-    { id: 1, name: 'Learn React' },
-    { id: 2, name: 'Watching youtube' }
-  ]);
-
-  const object = {
-    name: 'minh',
-    age: '21',
-    data: {
-      city: 'hanoi',
-      country: 'vietnam'
-    }
-  }
-  const str = 'hello';
+  const [todoList, setTodoList] = useState([]);
 
   const addNewTodo = (name) => {
     const newTodo = {
@@ -38,7 +25,7 @@ const App = () => {
     <div className="todo-container">
       <div className="todo-title">Todo list</div>
       <TodoNew addNewTodo={addNewTodo} />
-      <TodoData str={str} object={object} todoList={todoList} />
+      <TodoData todoList={todoList} />
       <div className='todo-image'>
         <img className='logo' src={reactLogo} alt="" />
       </div>
