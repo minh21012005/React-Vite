@@ -14,10 +14,14 @@ const App = () => {
   }
   const str = 'hello';
 
+  const addNewTodo = (name) => {
+    alert(`call me ${name}`);
+  }
+
   return (
     <div className="todo-container">
       <div className="todo-title">Todo list</div>
-      <TodoNew />
+      <TodoNew addNewTodo={addNewTodo} />
       <TodoData str={str} object={object} />
       <div className='todo-image'>
         <img className='logo' src={reactLogo} alt="" />
