@@ -2,7 +2,14 @@ const TodoData = (props) => {
     const { todoList } = props;
     return (
         <div className='todo-data'>
-            <div>{JSON.stringify(todoList)}</div>
+            {todoList.map((item, index) => {
+                return (
+                    <div className='todo-item' key={index}>
+                        <div className='todo-item-name'>{item.name}</div>
+                        <button className='delete-button'>Delete</button>
+                    </div>
+                )
+            })}
         </div>
     );
 }
