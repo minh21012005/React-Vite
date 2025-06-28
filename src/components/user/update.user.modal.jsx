@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Input, notification, Modal } from "antd";
-import { createUserApi } from "../../services/api.service";
+import { createUserApi, updateUserApi } from "../../services/api.service";
 
 
 const UpdateUserModal = (props) => {
@@ -8,7 +8,7 @@ const UpdateUserModal = (props) => {
     const [fullName, setFullName] = useState("");
     const [phone, setPhone] = useState("");
 
-    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate } = props;
+    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } = props;
 
     useEffect(() => {
         if (dataUpdate) {
@@ -33,6 +33,22 @@ const UpdateUserModal = (props) => {
         setFullName("");
         setId("");
         setPhone("");
+    }
+
+    const handleUpdateUser = async () => {
+        const res = await updateUserApi(id, fullName, phone);
+        if (res.data) {
+            notification.success({
+                message: 'Update user',
+                description: 'Cập nhật user thành công'
+            })
+            await loadUser();
+        } else {
+            notification.error({
+                message: 'Error Create user',
+                description: JSON.stringify(res.message)
+            })
+        }
     }
 
     return (
