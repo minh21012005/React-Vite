@@ -21,7 +21,7 @@ const Header = () => {
             icon: <BookOutlined />
         },
     ];
-    const [current, setCurrent] = useState('');
+    const [current, setCurrent] = useState('home');
     const onClick = e => {
         console.log('click ', e);
         setCurrent(e.key);
