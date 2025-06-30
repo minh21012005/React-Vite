@@ -95,6 +95,7 @@ const UserTable = (props) => {
                 setIsModalDetailOpen={setIsModalDetailOpen}
                 dataUserDetail={dataUserDetail}
                 setDataUserDetail={setDataUserDetail}
+                loadUser={loadUser}
             />
         </>
     )
