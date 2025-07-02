@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BookOutlined, HomeOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+import { BookOutlined, HomeOutlined, UserOutlined, LoginOutlined, AliwangwangOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
@@ -30,21 +30,24 @@ const Header = () => {
             key: 'books',
             icon: <BookOutlined />
         },
-        {
-            label: 'Cài đặt',
+
+        ...(!user.id ? [{
+            label: <Link to={"/login"}>Đăng nhập</Link>,
+            key: 'login',
+            icon: <LoginOutlined />
+        }] : []),
+
+        ...(user.id ? [{
+            label: `Welcome ${user.fullName}`,
             key: 'setting',
-            icon: <SettingOutlined />,
+            icon: <AliwangwangOutlined />,
             children: [
-                {
-                    label: <Link to={"/login"}>Đăng nhập</Link>,
-                    key: 'login',
-                },
                 {
                     label: 'Đăng xuất',
                     key: 'logout',
                 },
             ],
-        },
+        }] : []),
     ];
 
     return (
