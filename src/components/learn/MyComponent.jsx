@@ -8,7 +8,6 @@ const MyComponent = () => {
     return (
         <>
             <div>Hello {JSON.stringify(hoidanit)}</div>
-            <div>{console.log('hello update')}</div>
             <div className='child' style={{ borderRadius: '10px' }}>Hello vite</div>
         </>
     );
