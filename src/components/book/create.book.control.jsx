@@ -76,7 +76,7 @@ const CreateBookControl = (props) => {
     return (
         <>
             <Modal
-                title="Create User"
+                title="Create Book (Controlled Component)"
                 open={isCreateOpen}
                 onOk={() => handleSubmitBtn()}
                 onCancel={() => resetAndCloseModal()}
