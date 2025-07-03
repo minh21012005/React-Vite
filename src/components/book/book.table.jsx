@@ -2,6 +2,7 @@ import { Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import ViewBookDetail from "./view.book.detail";
 
 const BookTable = () => {
 
@@ -132,6 +133,12 @@ const BookTable = () => {
                         showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
                     }}
                 onChange={onChange}
+            />
+            <ViewBookDetail
+                dataDetail={dataDetail}
+                setDataDetail={setDataDetail}
+                isDetailOpen={isDetailOpen}
+                setIsDetailOpen={setIsDetailOpen}
             />
         </>
     )
