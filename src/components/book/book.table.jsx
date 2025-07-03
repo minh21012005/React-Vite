@@ -1,8 +1,9 @@
-import { Popconfirm, Table } from "antd";
+import { Button, Popconfirm, Table } from "antd";
 import { useEffect, useState } from "react";
 import { fetchAllBookAPI } from "../../services/api.service";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import ViewBookDetail from "./view.book.detail";
+import CreateBookControl from "./create.book.control";
 
 const BookTable = () => {
 
@@ -10,6 +11,7 @@ const BookTable = () => {
     const [pageSize, setPageSize] = useState(5);
     const [dataBook, setDataBook] = useState([]);
     const [total, setTotal] = useState(0);
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
 
     const [dataDetail, setDataDetail] = useState(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
@@ -121,6 +123,14 @@ const BookTable = () => {
 
     return (
         <>
+            <div style={{
+                margin: "10px 0",
+                display: "flex",
+                justifyContent: "space-between"
+            }}>
+                <h3>Table Book</h3>
+                <Button type="primary" onClick={() => setIsCreateOpen(true)}>Create Book</Button>
+            </div>
             <Table columns={columns}
                 dataSource={dataBook}
                 rowKey={"_id"}
@@ -139,6 +149,11 @@ const BookTable = () => {
                 setDataDetail={setDataDetail}
                 isDetailOpen={isDetailOpen}
                 setIsDetailOpen={setIsDetailOpen}
+            />
+            <CreateBookControl
+                isCreateOpen={isCreateOpen}
+                setIsCreateOpen={setIsCreateOpen}
+                loadBook={loadBook}
             />
         </>
     )
