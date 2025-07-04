@@ -15,6 +15,7 @@ const BookTable = () => {
     const [dataBook, setDataBook] = useState([]);
     const [total, setTotal] = useState(0);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [loadingTable, setLoadingTable] = useState(false);
 
     const [dataDetail, setDataDetail] = useState(null);
     const [isDetailOpen, setIsDetailOpen] = useState(false);
@@ -25,6 +26,7 @@ const BookTable = () => {
     useEffect(() => { loadBook() }, [current, pageSize]);
 
     const loadBook = async () => {
+        setLoadingTable(true);
         const res = await fetchAllBookAPI(current, pageSize);
         if (res.data) {
             setDataBook(res.data.result);
@@ -32,6 +34,7 @@ const BookTable = () => {
             setPageSize(res.data.meta.pageSize);
             setTotal(res.data.meta.total);
         }
+        setLoadingTable(false);
     }
 
     const handleDeleteBook = async (id) => {
@@ -159,6 +162,7 @@ const BookTable = () => {
                         showTotal: (total, range) => { return (<div> {range[0]}-{range[1]} trên {total} rows</div>) }
                     }}
                 onChange={onChange}
+                loading={loadingTable}
             />
             <ViewBookDetail
                 dataDetail={dataDetail}

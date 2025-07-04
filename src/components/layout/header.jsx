@@ -1,7 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BookOutlined, HomeOutlined, UserOutlined, LoginOutlined, AliwangwangOutlined } from '@ant-design/icons';
 import { Menu, message } from 'antd';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { logoutApi } from '../../services/api.service';
 
@@ -9,6 +9,20 @@ const Header = () => {
     const [current, setCurrent] = useState('');
 
     const { user, setUser } = useContext(AuthContext);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location && location.pathname) {
+            const allRoutes = ["users", "books"];
+            const currentRoute = allRoutes.find(item => `/${item}` === location.pathname);
+            if (currentRoute) {
+                setCurrent(currentRoute);
+            } else {
+                setCurrent("home");
+            }
+        }
+    }, [location]);
 
     const navigate = useNavigate();
 
